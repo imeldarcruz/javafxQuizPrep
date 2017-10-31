@@ -31,13 +31,32 @@ public class Testing extends Application{
 		Button btRed = new Button ("Red Circle");
 		Button btBlue = new Button ("Blue Circle");
 		
+
 		//create and register the Handler
-		btEnlarge.setOnAction(new EnlargeHandler());
-		btShrink.setOnAction(new ShrinkHandler());
+		btEnlarge.setOnAction(new EventHandler <ActionEvent> (){
+			public void handle (ActionEvent e) {
+				cPane.Enlarge();
+			}
+		});
+		
+		btShrink.setOnAction(new EventHandler <ActionEvent> (){
+			public void handle (ActionEvent e) {
+				cPane.Shrink();
+			}
+		});
 		
 		//create and register the Handler for color
-		btRed.setOnAction(new RedHandler());
-		btBlue.setOnAction(new BlueHandler());
+		btRed.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle (ActionEvent e) {
+				cPane.Red();
+			}
+		});
+		
+		btBlue.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle (ActionEvent e) {
+				cPane.Blue();
+			}
+		});
 		
 		//adding Buttons to HBox
 		hbox.getChildren().add(btEnlarge);
@@ -59,30 +78,9 @@ public class Testing extends Application{
 		pStage.setScene(scene);
 		pStage.show();
 	}
-	
-	class EnlargeHandler implements EventHandler<ActionEvent>{
-		public void handle (ActionEvent e) {
-			cPane.Enlarge();
-		}
-	}
-	
-	class ShrinkHandler implements EventHandler <ActionEvent>{
-		public void handle (ActionEvent e) {
-			cPane.Shrink();
-		}
-	}
 
-	class RedHandler implements EventHandler<ActionEvent>{
-		public void handle (ActionEvent e) {
-			cPane.Red();
-		}
-	}
 
-	class BlueHandler implements EventHandler<ActionEvent>{
-		public void handle (ActionEvent e) {
-			cPane.Blue();
-		}
-	}
+
 }
 
 class CirclePane extends StackPane{
